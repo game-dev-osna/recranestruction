@@ -172,7 +172,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -196,8 +196,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807204945}
-  m_LocalRotation: {x: -0.08717229, y: 0.8995905, z: -0.21045253, w: -0.37262273}
-  m_LocalPosition: {x: 20.248413, y: 10.076775, z: -2.3498888}
+  m_LocalRotation: {x: -0.07140108, y: 0.927559, z: -0.28115433, w: -0.23555994}
+  m_LocalPosition: {x: 15.626594, y: 13.680483, z: 3.5641327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -272,57 +272,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd5ab2c5ce0368c4c873e18f9317ee72, type: 3}
---- !u!1 &1127570527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3797675241190868114, guid: bd5ab2c5ce0368c4c873e18f9317ee72,
-    type: 3}
-  m_PrefabInstance: {fileID: 1127570526}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1127570528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1127570527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60941ac29fdfb214383026333927513e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotate:
-    m_Name: Rotate
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 05445678-c6f9-4b83-95b8-9a19e000902c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 1D Axis
-      m_Id: 9b9987f5-7290-4d7a-8bb5-a2b21374320d
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: 235a4f16-88fa-45e7-8fe6-de5699685a81
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: 84e22635-6a84-4037-b750-336368415cfd
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-  _rotationSpeed: 50
 --- !u!1 &1302488037
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +282,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1302488040}
   - component: {fileID: 1302488039}
-  - component: {fileID: 1302488038}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -341,51 +289,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1302488038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302488037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60941ac29fdfb214383026333927513e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotate:
-    m_Name: Rotate
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 25d1bd48-aecd-4a1f-ad41-e60b38f7b007
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 1D Axis
-      m_Id: ff4e6a50-3d55-4ef9-ba9e-f17349902924
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: 15af8ce3-7e52-4624-88f1-8b45f05fd56a
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: a5e95b15-f146-41da-be46-862a7517969a
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-  _rotationSpeed: 10
 --- !u!108 &1302488039
 Light:
   m_ObjectHideFlags: 0

@@ -101,6 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3797675241190868117}
+  - component: {fileID: 1127570528}
   m_Layer: 0
   m_Name: Crane
   m_TagString: Untagged
@@ -124,6 +125,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127570528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797675241190868114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60941ac29fdfb214383026333927513e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotate:
+    m_Name: Rotate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 05445678-c6f9-4b83-95b8-9a19e000902c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 9b9987f5-7290-4d7a-8bb5-a2b21374320d
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotate
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 235a4f16-88fa-45e7-8fe6-de5699685a81
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotate
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 84e22635-6a84-4037-b750-336368415cfd
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rotate
+      m_Flags: 8
+  _rotationSpeed: 50
+  _mainPart: {fileID: 3797675241557580568}
 --- !u!1 &3797675241557580569
 GameObject:
   m_ObjectHideFlags: 0
