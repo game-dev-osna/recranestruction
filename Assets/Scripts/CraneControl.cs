@@ -7,7 +7,8 @@ public class CraneControl : MonoBehaviour
 {
     [SerializeField] private InputAction _rotate;
     [SerializeField] private float _rotationSpeed;
-    
+    [SerializeField] private Transform _mainPart;
+
     void OnEnable()
     {
         _rotate.Enable();
@@ -22,6 +23,6 @@ public class CraneControl : MonoBehaviour
     void Update()
     {
         var value = _rotate.ReadValue<float>();
-        transform.localEulerAngles += new Vector3(0,value,0) * Time.deltaTime * _rotationSpeed;
+        _mainPart.localEulerAngles += new Vector3(0,value,0) * Time.deltaTime * _rotationSpeed;
     }
 }
