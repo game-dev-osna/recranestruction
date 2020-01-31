@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Draggable
+  - Ghost0
+  - Instance0
   layers:
   - Default
   - TransparentFX
