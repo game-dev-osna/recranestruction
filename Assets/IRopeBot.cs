@@ -58,14 +58,14 @@ public class IRopeBot : MonoBehaviour
         var lastInstance = _joints.Count > 0 ? _joints.Last().transform : transform;
         lastInstance.GetComponent<Collider>().enabled = false;
 
-        var newInstance = Instantiate(_ropePartPrefab, lastInstance.position + Vector3.down * 0.8f, Quaternion.identity, transform.parent.transform);
+        var newInstance = Instantiate(_ropePartPrefab, lastInstance.position -lastInstance.transform.up * 0.4f, Quaternion.identity, transform.parent.transform);
         //newInstance.GetComponent<Collider>().enabled = true;
         var newJoint = newInstance.GetComponent<HingeJoint>();
         newJoint.connectedBody = lastInstance.GetComponent<Rigidbody>();
         _joints.AddLast(newJoint);
 
         _alien.GetComponent<HingeJoint>().connectedBody = newInstance.GetComponent<Rigidbody>();
-        _alien.transform.position = newInstance.transform.position + Vector3.down * 0.8f;
+        _alien.transform.position = newInstance.transform.position -lastInstance.transform.up * 0.4f;
     }
 
     private void RemoveSegment()

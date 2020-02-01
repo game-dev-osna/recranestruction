@@ -7,7 +7,6 @@ public class GooController : MonoBehaviour
 {
     [SerializeField] private InputAction _movement;
     [SerializeField] private float _speed;
-    public Transform bottom;
 
     private Rigidbody _gooBody;
     
@@ -29,6 +28,6 @@ public class GooController : MonoBehaviour
     {
         var value = _movement.ReadValue<Vector2>();
         var movementVector = new Vector3(value.x, 0f, value.y);
-        _gooBody.AddForceAtPosition(movementVector * Time.deltaTime * _speed, bottom.position);
+        _gooBody.AddForce(movementVector * Time.deltaTime * _speed * 10000);
     }
 }
