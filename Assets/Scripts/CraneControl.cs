@@ -27,8 +27,10 @@ public class CraneControl : MonoBehaviour
     void Update()
     {
         float accel = _acceleration * _rotate.ReadValue<float>();
-        float wouldBeSpeed = (speed + Time.deltaTime * accel) - speed * _friction * Time.deltaTime;
+        float wouldBeSpeed = (speed + Time.deltaTime * accel) * _friction;
         speed = Mathf.Clamp(wouldBeSpeed, -_maxSpeed, _maxSpeed);
+        // float wouldBeSpeed = (speed + Time.deltaTime * accel) - Mathf.Sign(speed) * _friction * Time.deltaTime;
+        // speed = speed < 0 ? Mathf.Clamp(wouldBeSpeed, -_maxSpeed, 0) : Mathf.Clamp(wouldBeSpeed, 0, _maxSpeed);
         _mainPart.localEulerAngles += Time.deltaTime * new Vector3(0,speed,0);
     }
 }
