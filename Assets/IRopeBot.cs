@@ -61,7 +61,7 @@ public class IRopeBot : MonoBehaviour
         var lastInstance = _joints.Count > 0 ? _joints.Last().transform : transform;
         lastInstance.GetComponent<Collider>().enabled = false;
 
-        var newInstance = Instantiate(_ropePartPrefab, lastInstance.position + Vector3.down * segmentSize, Quaternion.identity, transform.parent.transform);
+        var newInstance = Instantiate(_ropePartPrefab, lastInstance.position + Vector3.down * segmentSize, lastInstance.rotation, transform.parent.transform);
         //newInstance.GetComponent<Collider>().enabled = true;
         var newJoint = newInstance.GetComponent<HingeJoint>();
         newJoint.connectedBody = lastInstance.GetComponent<Rigidbody>();
