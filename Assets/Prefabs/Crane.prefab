@@ -5219,10 +5219,10 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Rotate
       m_Flags: 8
-  _acceleration: 5
+  _acceleration: 5.25
   _mainPart: {fileID: 3808461531017766132}
-  _friction: 1
-  _maxSpeed: 5
+  _friction: 6.69
+  _maxSpeed: 7.24
   _fastEnoughForSparks: 2
   _brakeBoost: 4
   _sparks: {fileID: 3447737687864587692}
