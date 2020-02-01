@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 3808461531017766132}
   - component: {fileID: 603978708948731638}
   - component: {fileID: 7293949536166054148}
+  - component: {fileID: 3712358806188058335}
   m_Layer: 0
   m_Name: arm
   m_TagString: Untagged
@@ -66,7 +67,7 @@ Transform:
   - {fileID: 5196695673695855143}
   m_Father: {fileID: 8280835897962801551}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 50.68, z: 0}
 --- !u!33 &603978708948731638
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113,6 +114,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &3712358806188058335
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476566311698423433}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
 --- !u!1 &5498943637892989468
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,51 +5219,16 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Rotate
       m_Flags: 8
-  _acceleration: 150
+  _acceleration: 5
   _mainPart: {fileID: 3808461531017766132}
-  _friction: 0.99
-  _maxSpeed: 300
-  _fastEnoughForSparks: 100
+  _friction: 1
+  _maxSpeed: 5
+  _fastEnoughForSparks: 2
   _brakeBoost: 4
   _sparks: {fileID: 3447737687864587692}
+  _arm: {fileID: 3712358806188058335}
   _brakeSound: {fileID: 8300000, guid: a553f75b981c97c428f51fc6d4a4587a, type: 3}
   _audioSource: {fileID: 7559414783223023088}
-  _ropeLengthInput:
-    m_Name: Rope Length Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 4f6ce358-08bb-4180-8f25-4f69509990c2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 1D Axis
-      m_Id: 5720e530-adf3-434c-aefd-95a760b4e442
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rope Length Input
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: c68f7015-edb7-4c08-88b5-14c43f0ee8e0
-      m_Path: <Keyboard>/q
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rope Length Input
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: 0022658f-4e42-4fa8-a525-4c4fe75316c5
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rope Length Input
-      m_Flags: 8
-  _ropeSpeed: 0.4
-  _minLength: 0.14
-  _maxLength: 0.98
-  _ropeController: {fileID: 0}
 --- !u!82 &7559414783223023088
 AudioSource:
   m_ObjectHideFlags: 0
