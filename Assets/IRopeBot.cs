@@ -7,17 +7,18 @@ using UnityEngine.InputSystem;
 public class IRopeBot : MonoBehaviour
 {
     public float thickness = 1f;
+    public float ropeSpeed = 1f;
+    public float segmentSize = 0.4f;
     public InputAction _segmentControl;
     public GameObject _ropePartPrefab;
     public GameObject _alien;
-    public int _ropeLength;
+    public float _ropeLength;
     private Rigidbody _rigidbody;
     private LineRenderer _lineRenderer;
     private LinkedList<HingeJoint> _joints = new LinkedList<HingeJoint>();
 
     private bool _pressed;
 
-    // Start is called before the first frame update
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -29,19 +30,21 @@ public class IRopeBot : MonoBehaviour
 
     private void Update()
     {
+        _ropeLength += _segmentControl.ReadValue<float>() * Time.deltaTime * ropeSpeed;
         RenderTheFrickinRope();
 
-        if(_ropeLength > _joints.Count)
+        var roundedRopeLength = Mathf.Round(_ropeLength);
+        if (roundedRopeLength > _joints.Count)
         {
-            for(int i = 0; i < _ropeLength - _joints.Count; i++)
+            for(int i = 0; i < roundedRopeLength - _joints.Count; i++)
             {
                 AddSegment();
             }
         }
 
-        if (_joints.Count > _ropeLength)
+        if (_joints.Count > roundedRopeLength)
         {
-            for (int i = 0; i < _joints.Count - _ropeLength; i++)
+            for (int i = 0; i < _joints.Count - roundedRopeLength; i++)
             {
                 RemoveSegment();
             }
@@ -58,14 +61,14 @@ public class IRopeBot : MonoBehaviour
         var lastInstance = _joints.Count > 0 ? _joints.Last().transform : transform;
         lastInstance.GetComponent<Collider>().enabled = false;
 
-        var newInstance = Instantiate(_ropePartPrefab, lastInstance.position -lastInstance.transform.up * 0.4f, Quaternion.identity, transform.parent.transform);
+        var newInstance = Instantiate(_ropePartPrefab, lastInstance.position + Vector3.down * segmentSize, Quaternion.identity, transform.parent.transform);
         //newInstance.GetComponent<Collider>().enabled = true;
         var newJoint = newInstance.GetComponent<HingeJoint>();
         newJoint.connectedBody = lastInstance.GetComponent<Rigidbody>();
         _joints.AddLast(newJoint);
 
         _alien.GetComponent<HingeJoint>().connectedBody = newInstance.GetComponent<Rigidbody>();
-        _alien.transform.position = newInstance.transform.position -lastInstance.transform.up * 0.4f;
+        _alien.transform.position = newInstance.transform.position + Vector3.down * segmentSize;
     }
 
     private void RemoveSegment()
@@ -81,7 +84,6 @@ public class IRopeBot : MonoBehaviour
         Destroy(lastInstance.gameObject);
 
         _alien.GetComponent<HingeJoint>().connectedBody = _joints.Count > 0 ? _joints.Last().GetComponent<Rigidbody>() : transform.GetComponent<Rigidbody>();
-        //_alien.transform.position = newInstance.transform.position + Vector3.down * 0.8f;
     }
 
     private void RenderTheFrickinRope()

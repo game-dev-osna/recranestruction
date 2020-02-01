@@ -370,6 +370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thickness: 0.4
+  ropeSpeed: 16
+  segmentSize: 0.3
   _segmentControl:
     m_Name: Segment Control
     m_Type: 0
@@ -378,14 +380,54 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 8876f792-172e-4123-bc85-7c08ce6c3ca7
-      m_Path: <Keyboard>/enter
+    - m_Name: 1D Axis
+      m_Id: 83bd9d73-eb37-4e39-bd76-9a19d05a3268
+      m_Path: 1DAxis
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Segment Control
-      m_Flags: 0
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 56612c51-03c1-4182-85f5-fdd7488db0a9
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Segment Control
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 9b445274-733a-4ba1-9d9f-4a7b409bb4ed
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Segment Control
+      m_Flags: 8
+    - m_Name: 1D Axis
+      m_Id: 89aad241-9883-44fc-8ec3-7ecb940e9485
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Segment Control
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 7e10f296-5a78-4e1a-b02c-c2973014fd30
+      m_Path: <Gamepad>/leftTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Segment Control
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: ebbf677a-46b6-46ac-9237-c3e67341724a
+      m_Path: <Gamepad>/leftShoulder
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Segment Control
+      m_Flags: 8
   _ropePartPrefab: {fileID: 4508884688405273264, guid: c74c46a3b04a7194ca2e715b8af5b691,
     type: 3}
   _alien: {fileID: 1782685099}
@@ -1003,7 +1045,48 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Movement
       m_Flags: 8
+    - m_Name: 2D Vector
+      m_Id: c5700982-5df8-4b26-837b-96c129e5f181
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 72c4fe5b-d18e-4a03-8c5c-557f0c246527
+      m_Path: <Gamepad>/rightStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 90c2864e-7960-4429-9997-d3b06d3c5741
+      m_Path: <Gamepad>/rightStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 3441776f-66ca-45b6-ac59-94fd714a8af5
+      m_Path: <Gamepad>/rightStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: c6142b0c-1c94-480b-b39c-274638d89f9f
+      m_Path: <Gamepad>/rightStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
   _speed: 4
+  thrust: {x: 0, y: 0}
 --- !u!135 &1782685105
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1040,6 +1123,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: d7a151f0-47bf-4b94-a8e3-d9f22b6f36b4
       m_Path: <Keyboard>/enter
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Grab
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 76cb8871-02b9-4389-a980-3803c068328e
+      m_Path: <Gamepad>/rightTrigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
