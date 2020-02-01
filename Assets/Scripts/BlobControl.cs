@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BlobControl : MonoBehaviour
 {
-
-    private List<Transform> connectedObjects = new List<Transform>();
     private List<Transform> collidingObjects = new List<Transform>();
+    private Transform connectedObject;
     private Rigidbody blobRigidbody;
 
     [SerializeField] private InputAction _grabAction;
@@ -36,41 +36,39 @@ public class BlobControl : MonoBehaviour
         bool newGrabbing = _grabAction.ReadValue<float>() >= 0.5f;
 
         if (newGrabbing)
-            AttachCollidingObjects();
+            AttachCollidingObject();
 
         if (!newGrabbing && _grabbing)
-            DetachCollidingObjects();
+            DetachCollidingObject();
 
         _grabbing = newGrabbing;
     }
 
-    void AttachCollidingObjects()
+    void AttachCollidingObject()
     {
-        foreach (Transform collider in collidingObjects)
+        if(!collidingObjects.Any())
         {
-            if(connectedObjects.Contains(collider))
-            {
-                continue;
-            }
-
-            collider.SetParent(transform);
-            collider.GetComponent<Rigidbody>().isKinematic = true;
-            connectedObjects.Add(collider);
+            return;
         }
+
+        var collidingObject = collidingObjects.First();
+        collidingObject.SetParent(transform);
+        collidingObject.GetComponent<Rigidbody>().isKinematic = true;
+        connectedObject = collidingObject;
     }
 
-    void DetachCollidingObjects()
+    void DetachCollidingObject()
     {
-        for (int i = connectedObjects.Count - 1; i > -1; i--)
+        if (connectedObject == null)
         {
-            Transform collider = connectedObjects[i];
-            collider.SetParent(null);
-            var body = collider.GetComponent<Rigidbody>();
-            body.isKinematic = false;
-            body.velocity = blobRigidbody.velocity;
-
-            connectedObjects.Remove(collider);
+            return;
         }
+
+        connectedObject.SetParent(null);
+        var body = connectedObject.GetComponent<Rigidbody>();
+        body.isKinematic = false;
+        body.velocity = blobRigidbody.velocity;
+        connectedObject = null;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,7 +79,7 @@ public class BlobControl : MonoBehaviour
 
         Debug.Log($"## Added : {other.gameObject.name}");
         collidingObjects.Add(other.gameObject.transform);
-        
+
     }
 
     private void OnTriggerExit(Collider other)
