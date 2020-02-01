@@ -33,7 +33,7 @@ public class GooController : MonoBehaviour
         _gooBody.velocity = vel;
         var value = _movement.ReadValue<Vector2>();
         thrust = value;
-        var movementVector = transform.localToWorldMatrix * new Vector3(value.x, 0f, value.y);
-        _gooBody.AddForce(movementVector * Time.deltaTime * _speed * 10000);
+        var movementVector = transform.TransformDirection(new Vector3(value.x, 0f, value.y));
+        _gooBody.AddForce(movementVector * Time.deltaTime * _speed * 10000, ForceMode.Acceleration);
     }
 }
