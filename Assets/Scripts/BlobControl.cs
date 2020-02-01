@@ -8,6 +8,7 @@ public class BlobControl : MonoBehaviour
 
     private List<Transform> connectedObjects = new List<Transform>();
     private List<Transform> collidingObjects = new List<Transform>();
+    private Rigidbody blobRigidbody;
 
     [SerializeField] private InputAction _grabAction;
 
@@ -16,7 +17,7 @@ public class BlobControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        blobRigidbody = GetComponent<Rigidbody>();
     }
 
     void OnEnable()
@@ -64,7 +65,9 @@ public class BlobControl : MonoBehaviour
         {
             Transform collider = connectedObjects[i];
             collider.SetParent(null);
-            collider.GetComponent<Rigidbody>().isKinematic = false;
+            var body = collider.GetComponent<Rigidbody>();
+            body.isKinematic = false;
+            body.velocity = blobRigidbody.velocity;
 
             connectedObjects.Remove(collider);
         }
