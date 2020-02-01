@@ -7,6 +7,7 @@ public class JurassicCar : MonoBehaviour
     public Transform exploder;
     public float _explosionEngineForce = 0.5f;
     private Rigidbody _rigidbody;
+    public Transform target;
     // Start is called before the first frame update
 
     private Vector3 _startPosition;
@@ -20,7 +21,8 @@ public class JurassicCar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _rigidbody.AddForce(Vector3.right * _explosionEngineForce);
+        var direction = (target.position - transform.position).normalized;
+        _rigidbody.AddForce(direction * _explosionEngineForce);
     }
 
     public void MakeTheCarMoveIntoTheDirectionItIsCurrentlyLookingAtWithAPredefinedVelocityPlease(float force)
