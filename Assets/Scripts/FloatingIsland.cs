@@ -7,16 +7,20 @@ using UnityEngine;
 public class FloatingIsland : MonoBehaviour
 {
     public float speed = 1f;
-    public Vector3 waypoint;
-    public Bounds waypointArea;
 
+    public Transform waypointArea;
+
+    private Bounds area;
     private Vector3 target;
     private Rigidbody rb;
+    private Vector3 waypoint;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         target = transform.position;
+        area = new Bounds(waypointArea.transform.position, waypointArea.transform.localScale);
+        waypoint = transform.position;
     }
 
     void FixedUpdate()
@@ -33,15 +37,23 @@ public class FloatingIsland : MonoBehaviour
 
     private Vector3 GenerateNewWaypoint()
     {
-        float x = UnityEngine.Random.Range(waypointArea.min.x,waypointArea.max.x);
-        float y = UnityEngine.Random.Range(waypointArea.min.y,waypointArea.max.y);
-        float z = UnityEngine.Random.Range(waypointArea.min.z,waypointArea.max.z);
+        float x = UnityEngine.Random.Range(area.min.x,area.max.x);
+        float y = UnityEngine.Random.Range(area.min.y,area.max.y);
+        float z = UnityEngine.Random.Range(area.min.z,area.max.z);
         return new Vector3(x, y, z);
     }
 
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.CompareTag("Draggable"))
-    //     other.transform.parent = transform;
-    // }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Draggable"))
+        {
+            other.transform.parent = transform;
+            if (other.TryGetComponent<Collider>(out Collider coll)) {
+                coll.enabled = false;
+            }
+            if (other.TryGetComponent<Rigidbody>(out Rigidbody rb)) {
+                rb.isKinematic = true;
+            }
+        }
+    }
 }
