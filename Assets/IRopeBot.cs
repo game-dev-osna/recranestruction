@@ -98,7 +98,6 @@ public class IRopeBot : MonoBehaviour
 
         _lineRenderer.positionCount = positions.Count;
         _lineRenderer.SetPositions(positions.ToArray());
-        _lineRenderer.startWidth = thickness;
-        _lineRenderer.endWidth = thickness;
+        _lineRenderer.SetWidth(thickness, thickness);
     }
 }
