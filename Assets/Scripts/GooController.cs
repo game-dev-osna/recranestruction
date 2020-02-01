@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class GooController : MonoBehaviour
 {
+    [SerializeField] private float maxZVelocity = 1f;
     [SerializeField] private InputAction _movement;
     [SerializeField] private float _speed;
     public Vector2 thrust;
@@ -27,9 +28,12 @@ public class GooController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var vel = _gooBody.velocity;
+        vel.z = Mathf.Clamp(vel.z, -maxZVelocity, maxZVelocity);
+        _gooBody.velocity = vel;
         var value = _movement.ReadValue<Vector2>();
         thrust = value;
-        var movementVector = new Vector3(value.x, 0f, value.y);
+        var movementVector = transform.localToWorldMatrix * new Vector3(value.x, 0f, value.y);
         _gooBody.AddForce(movementVector * Time.deltaTime * _speed * 10000);
     }
 }
