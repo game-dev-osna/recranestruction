@@ -34,7 +34,7 @@ public class BlobControl : MonoBehaviour
     {
         bool newGrabbing = _grabAction.ReadValue<float>() >= 0.5f;
 
-        if (newGrabbing && !_grabbing)
+        if (newGrabbing)
             AttachCollidingObjects();
 
         if (!newGrabbing && _grabbing)
@@ -47,6 +47,11 @@ public class BlobControl : MonoBehaviour
     {
         foreach (Transform collider in collidingObjects)
         {
+            if(connectedObjects.Contains(collider))
+            {
+                continue;
+            }
+
             collider.SetParent(transform);
             collider.GetComponent<Rigidbody>().isKinematic = true;
             connectedObjects.Add(collider);

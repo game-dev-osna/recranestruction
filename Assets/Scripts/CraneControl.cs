@@ -44,7 +44,6 @@ public class CraneControl : MonoBehaviour
 
     private void CalculateRotation()
     {
-        float accel = _acceleration * _rotate.ReadValue<float>();
         float input = _rotate.ReadValue<float>();
         float accel = _acceleration * input;
         // actively steering against rotation
