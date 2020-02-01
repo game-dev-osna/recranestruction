@@ -18,6 +18,9 @@ public class RopeControllerRealisticNoSpring : MonoBehaviour
     //Rope data
     public float ropeSectionLength = 0.5f;
 
+    [Range(0.01f, 10f)]
+    public float bounciness;
+
     private void Start()
     {
         //Init the line renderer we use to display the rope
@@ -54,7 +57,7 @@ public class RopeControllerRealisticNoSpring : MonoBehaviour
 
     private void UpdateRopeSimulation()
     {
-        Vector3 gravityVec = new Vector3(0f, -9.81f, 0f);
+        Vector3 gravityVec = new Vector3(0f, -(10f- bounciness), 0f);
 
         float t = Time.fixedDeltaTime;
 
