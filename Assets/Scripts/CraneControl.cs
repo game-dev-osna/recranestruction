@@ -6,8 +6,12 @@ using UnityEngine.InputSystem;
 public class CraneControl : MonoBehaviour
 {
     [SerializeField] private InputAction _rotate;
-    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _acceleration;
     [SerializeField] private Transform _mainPart;
+    [SerializeField] private float _friction;
+    [SerializeField] private float _maxSpeed;
+
+    private float speed;
 
     void OnEnable()
     {
@@ -22,7 +26,9 @@ public class CraneControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var value = _rotate.ReadValue<float>();
-        _mainPart.localEulerAngles += new Vector3(0,value,0) * Time.deltaTime * _rotationSpeed;
+        float accel = _acceleration * _rotate.ReadValue<float>();
+        float wouldBeSpeed = (speed + Time.deltaTime * accel) - speed * _friction * Time.deltaTime;
+        speed = Mathf.Clamp(wouldBeSpeed, -_maxSpeed, _maxSpeed);
+        _mainPart.localEulerAngles += Time.deltaTime * new Vector3(0,speed,0);
     }
 }
