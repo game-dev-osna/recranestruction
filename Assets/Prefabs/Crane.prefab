@@ -5518,6 +5518,11 @@ PrefabInstance:
       propertyPath: _speed
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1848604473282022402, guid: a50f2a6c2c676d246862f3148e9cf9b4,
+        type: 3}
+      propertyPath: _orientation
+      value: 
+      objectReference: {fileID: 1915395063712758594}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50f2a6c2c676d246862f3148e9cf9b4, type: 3}
 --- !u!4 &1915395063712758594 stripped
