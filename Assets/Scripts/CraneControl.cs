@@ -8,6 +8,12 @@ public class CraneControl : MonoBehaviour
     [SerializeField] private Transform _mainPart;
     [SerializeField] private float _friction;
     [SerializeField] private float _maxSpeed;
+    [SerializeField] private float _fastEnoughForSparks;
+    [SerializeField] private float _brakeBoost;
+    [SerializeField] private ParticleSystem _sparks;
+    [Space]
+    [SerializeField] private AudioClip _brakeSound;
+    [SerializeField] private AudioSource _audioSource;
 
     [SerializeField] private InputAction _ropeLengthInput;
     [SerializeField] private float _ropeSpeed;
@@ -39,6 +45,23 @@ public class CraneControl : MonoBehaviour
     private void CalculateRotation()
     {
         float accel = _acceleration * _rotate.ReadValue<float>();
+        float input = _rotate.ReadValue<float>();
+        float accel = _acceleration * input;
+        // actively steering against rotation
+        if (Mathf.Abs(input) > .5f && input < 0 != speed < 0)
+        {
+            accel *= _brakeBoost;
+            if (Mathf.Abs(speed) > _fastEnoughForSparks)
+            {
+                _sparks.Play();
+                if (!_audioSource.isPlaying)
+                    _audioSource.PlayOneShot(_brakeSound);
+            }
+            else
+            {
+                _sparks.Stop();
+            }
+        }
         float wouldBeSpeed = (speed + Time.deltaTime * accel) * _friction;
         speed = Mathf.Clamp(wouldBeSpeed, -_maxSpeed, _maxSpeed);
         // float wouldBeSpeed = (speed + Time.deltaTime * accel) - Mathf.Sign(speed) * _friction * Time.deltaTime;
