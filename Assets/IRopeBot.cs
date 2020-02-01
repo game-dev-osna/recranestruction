@@ -9,6 +9,7 @@ public class IRopeBot : MonoBehaviour
     public float thickness = 1f;
     public InputAction _segmentControl;
     public GameObject _ropePartPrefab;
+    public GameObject _alien;
     public int _ropeLength;
     private Rigidbody _rigidbody;
     private LineRenderer _lineRenderer;
@@ -23,6 +24,7 @@ public class IRopeBot : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _segmentControl.Enable();
 
+        _alien.GetComponent<HingeJoint>().connectedBody = _rigidbody;
     }
 
     private void Update()
@@ -63,6 +65,9 @@ public class IRopeBot : MonoBehaviour
         var newJoint = newInstance.GetComponent<HingeJoint>();
         newJoint.connectedBody = lastInstance.GetComponent<Rigidbody>();
         _joints.AddLast(newJoint);
+
+        _alien.GetComponent<HingeJoint>().connectedBody = newInstance.GetComponent<Rigidbody>();
+        _alien.transform.position = newInstance.transform.position + Vector3.down * 0.8f;
     }
 
     private void RenderTheFrickinRope()
