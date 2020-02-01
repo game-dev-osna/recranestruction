@@ -7,9 +7,10 @@ public class GooController : MonoBehaviour
 {
     [SerializeField] private InputAction _movement;
     [SerializeField] private float _speed;
+    public Vector2 thrust;
 
     private Rigidbody _gooBody;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class GooController : MonoBehaviour
     void Update()
     {
         var value = _movement.ReadValue<Vector2>();
+        thrust = value;
         var movementVector = new Vector3(value.x, 0f, value.y);
         _gooBody.AddForce(movementVector * Time.deltaTime * _speed);
     }
