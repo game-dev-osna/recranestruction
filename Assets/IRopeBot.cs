@@ -31,22 +31,20 @@ public class IRopeBot : MonoBehaviour
     {
         RenderTheFrickinRope();
 
-        if(_pressed && _segmentControl.ReadValue<float>() < 0.5f)
+        if(_ropeLength > _joints.Count)
         {
-            _pressed = false;
-            return;
+            for(int i = 0; i < _ropeLength - _joints.Count; i++)
+            {
+                AddSegment();
+            }
         }
 
-        if(_pressed)
+        if (_joints.Count > _ropeLength)
         {
-            return;
-        }
-
-        _pressed = _segmentControl.ReadValue<float>() > 0.5f;
-        
-        if (_pressed)
-        {
-            AddSegment();
+            for (int i = 0; i < _joints.Count - _ropeLength; i++)
+            {
+                RemoveSegment();
+            }
         }
     }
 
@@ -70,6 +68,22 @@ public class IRopeBot : MonoBehaviour
         _alien.transform.position = newInstance.transform.position + Vector3.down * 0.8f;
     }
 
+    private void RemoveSegment()
+    {
+        if(_joints.Count == 0)
+        {
+            return;
+        }
+
+        var lastInstance = _joints.Last().transform;
+
+        _joints.Remove(lastInstance.GetComponent<HingeJoint>());
+        Destroy(lastInstance.gameObject);
+
+        _alien.GetComponent<HingeJoint>().connectedBody = _joints.Count > 0 ? _joints.Last().GetComponent<Rigidbody>() : transform.GetComponent<Rigidbody>();
+        //_alien.transform.position = newInstance.transform.position + Vector3.down * 0.8f;
+    }
+
     private void RenderTheFrickinRope()
     {
         var positions = new List<Vector3>();
@@ -85,10 +99,4 @@ public class IRopeBot : MonoBehaviour
         _lineRenderer.startWidth = thickness;
         _lineRenderer.endWidth = thickness;
     }
-
-    /*private void RemoveSegment()
-    {
-        var newJoint = newInstance.GetComponent<ConfigurableJoint>();
-        _joints.AddFirst(newJoint);
-    }*/
 }
