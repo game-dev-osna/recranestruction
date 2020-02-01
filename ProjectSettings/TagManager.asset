@@ -7,6 +7,7 @@ TagManager:
   - Draggable
   - Ghost0
   - Instance0
+  - Ghost
   layers:
   - Default
   - TransparentFX
