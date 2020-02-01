@@ -100,10 +100,10 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Rotate
       m_Flags: 8
-  _acceleration: 150
+  _acceleration: 80
   _mainPart: {fileID: 8928305257867792494}
   _friction: 0.98
-  _maxSpeed: 100
+  _maxSpeed: 150
 --- !u!1001 &4004197797946032789
 PrefabInstance:
   m_ObjectHideFlags: 0
