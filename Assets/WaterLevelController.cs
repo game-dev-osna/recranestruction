@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class WaterLevelController : MonoBehaviour
 {
+    public GameObject _successView;
     public Text _lostText;
     public Text _movedText;
 
@@ -35,5 +36,13 @@ public class WaterLevelController : MonoBehaviour
     {
         _movedText.text = "Moved: " + _moved;
         _lostText.text = "Lost: " + _lost;
+    }
+
+    private void CheckLevelEnd()
+    {
+        if(_moved + _lost == 3)
+        {
+            Instantiate(_successView);
+        }
     }
 }

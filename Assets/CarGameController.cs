@@ -2,14 +2,10 @@
 
 public class CarGameController : MonoBehaviour
 {
+    public GameObject _successView;
     public JurassicCar _car;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void StartCar()
     {
         _car.MakeTheCarMoveIntoTheDirectionItIsCurrentlyLookingAtWithAPredefinedVelocityPlease(13.37f);
@@ -22,6 +18,6 @@ public class CarGameController : MonoBehaviour
 
     public void OnWin()
     {
-
+        Instantiate(_successView);
     }
 }

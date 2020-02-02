@@ -23,6 +23,6 @@ public class GameMaster : MonoBehaviour
     public void OnClickStart()
     {
         Debug.Log("Clicked Start");
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("WaterLevel", LoadSceneMode.Single);
     }
 }
