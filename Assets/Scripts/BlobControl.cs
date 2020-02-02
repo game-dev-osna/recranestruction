@@ -55,6 +55,7 @@ public class BlobControl : MonoBehaviour
         collidingObject.SetParent(transform);
         collidingObject.GetComponent<Rigidbody>().isKinematic = true;
         connectedObject = collidingObject;
+        connectedObject.gameObject.GetComponentInChildren<DragableObject>().SetState(DragState.Grabbed);
     }
 
     void DetachCollidingObject()
@@ -69,6 +70,7 @@ public class BlobControl : MonoBehaviour
         body.isKinematic = false;
         body.velocity = blobRigidbody.velocity;
         connectedObject = null;
+        connectedObject.gameObject.GetComponentInChildren<DragableObject>().SetState(DragState.Grabbed);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,7 +81,7 @@ public class BlobControl : MonoBehaviour
 
         Debug.Log($"## Added : {other.gameObject.name}");
         collidingObjects.Add(other.gameObject.transform);
-
+        other.gameObject.GetComponentInChildren<DragableObject>().SetState(DragState.InRange);
     }
 
     private void OnTriggerExit(Collider other)
@@ -89,6 +91,7 @@ public class BlobControl : MonoBehaviour
 
         Debug.Log($"## Remove : {other.gameObject.name}");
         collidingObjects.Remove(other.gameObject.transform);
+        other.gameObject.GetComponentInChildren<DragableObject>().SetState(DragState.Idle);
     }
 
 }
