@@ -23,6 +23,7 @@ public class WaterLevelController : MonoBehaviour
         _lost++;
         UpdateTexts();
         Destroy(other.gameObject);
+        CheckLevelEnd();
     }
 
     public void OnObjectWasMoved(Transform other)
@@ -30,6 +31,7 @@ public class WaterLevelController : MonoBehaviour
         _moved++;
         UpdateTexts();
         Destroy(other.gameObject);
+        CheckLevelEnd();
     }
 
     private void UpdateTexts()
