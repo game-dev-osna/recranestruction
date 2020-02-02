@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StapelLevel.unity
     guid: 823664f9fa55fbe49aa797b6a31df6bc
+  - enabled: 1
+    path: Assets/Scenes/AutoLevel.unity
+    guid: edb1e1c3b89d1764c8502f7724270ac1
   m_configObjects: {}
