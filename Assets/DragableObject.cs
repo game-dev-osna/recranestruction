@@ -27,15 +27,11 @@ public class DragableObject : MonoBehaviour
     private void HandleIdle()
     {
         SetColor(Color.white);
-        //_rigidbody.isKinematic = true;
-        //_rigidbody.constraints= RigidbodyConstraints.FreezeAll;
     }
 
     private void HandleGrabbed()
     {
         SetColor(Color.blue);
-        //_rigidbody.isKinematic = false;
-        //_rigidbody.constraints = RigidbodyConstraints.None;
     }
 
     private void HandleInRange()
