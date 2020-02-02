@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3205119393613870810}
   - component: {fileID: 3205119393613870800}
   m_Layer: 0
-  m_Name: Joint
+  m_Name: CableManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,6 +186,8 @@ MonoBehaviour:
     type: 3}
   _alien: {fileID: 0}
   _ropeLength: 4
+  _minPitch: 0.8
+  _maxPitch: 1.1
 --- !u!120 &3205119393613870800
 LineRenderer:
   m_ObjectHideFlags: 0

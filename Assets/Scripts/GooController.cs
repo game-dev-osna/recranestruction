@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 
 public class GooController : MonoBehaviour
 {
+    [SerializeField] private float maxZVelocity = 1f;
     [SerializeField] private InputAction _movement;
     [SerializeField] private float _speed;
+    [SerializeField] private Transform _orientation;
     public Vector2 thrust;
 
     private Rigidbody _gooBody;
@@ -29,7 +31,7 @@ public class GooController : MonoBehaviour
     {
         var value = _movement.ReadValue<Vector2>();
         thrust = value;
-        var movementVector = new Vector3(value.x, 0f, value.y);
+        var movementVector = _orientation.TransformDirection(new Vector3(value.x, 0f, value.y));
         _gooBody.AddForce(movementVector * Time.deltaTime * _speed * 10000);
     }
 }

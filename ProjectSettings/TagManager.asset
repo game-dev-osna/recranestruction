@@ -7,7 +7,7 @@ TagManager:
   - Draggable
   - Ghost0
   - Instance0
-  - Ghost
+  - Car
   layers:
   - Default
   - TransparentFX
@@ -18,8 +18,8 @@ TagManager:
   - 
   - 
   - RopeCollision
-  - 
-  - 
+  - CarLayer
+  - RoadBlockLayer
   - 
   - 
   - 

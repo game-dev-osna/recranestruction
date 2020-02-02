@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class IRopeBot : MonoBehaviour
 {
     public float thickness = 1f;
@@ -16,6 +17,11 @@ public class IRopeBot : MonoBehaviour
     private Rigidbody _rigidbody;
     private LineRenderer _lineRenderer;
     private LinkedList<HingeJoint> _joints = new LinkedList<HingeJoint>();
+    [Header("sound settings")]
+    private AudioSource _audioSource;
+    public float _minPitch = 0.9f;
+    public float _maxPitch = 1.1f;
+
 
     private bool _pressed;
 
@@ -26,11 +32,22 @@ public class IRopeBot : MonoBehaviour
         _segmentControl.Enable();
 
         _alien.GetComponent<HingeJoint>().connectedBody = _rigidbody;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        _ropeLength += _segmentControl.ReadValue<float>() * Time.deltaTime * ropeSpeed;
+        float inputValue = _segmentControl.ReadValue<float>();
+        _audioSource.pitch = Mathf.Lerp(_minPitch, _maxPitch, inputValue * .5f + .5f);
+        if (Mathf.Approximately(inputValue, 0f))
+        {
+            _audioSource.Stop();
+        }
+        else if (!_audioSource.isPlaying)
+        {
+            _audioSource.Play();
+        }
+        _ropeLength += inputValue * Time.deltaTime * ropeSpeed;
         RenderTheFrickinRope();
 
         var roundedRopeLength = Mathf.Round(_ropeLength);
