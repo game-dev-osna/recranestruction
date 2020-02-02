@@ -6,11 +6,13 @@ public class DragableObject : MonoBehaviour
 {
     private MeshRenderer _renderer;
     private Rigidbody _rigidbody;
+    private Color _defaultColor;
 
     private void Start()
     {
         _renderer = GetComponent<MeshRenderer>();
         _rigidbody = GetComponent<Rigidbody>();
+        _defaultColor = _renderer.material.GetColor("_Color");
         SetState(DragState.Idle);
     }
 
@@ -26,7 +28,9 @@ public class DragableObject : MonoBehaviour
 
     private void HandleIdle()
     {
-        SetColor(Color.white);
+        SetColor(_defaultColor);
+        //_rigidbody.isKinematic = true;
+        //_rigidbody.constraints= RigidbodyConstraints.FreezeAll;
     }
 
     private void HandleGrabbed()
