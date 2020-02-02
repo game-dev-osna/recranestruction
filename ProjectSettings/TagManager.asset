@@ -8,6 +8,7 @@ TagManager:
   - Ghost0
   - Instance0
   - Car
+  - Water
   layers:
   - Default
   - TransparentFX
