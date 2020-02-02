@@ -70,9 +70,9 @@ public class BlobControl : MonoBehaviour
         connectedObject.SetParent(null);
         var body = connectedObject.GetComponent<Rigidbody>();
         body.isKinematic = false;
-        body.GetComponent<Rigidbody>().useGravity = true;
+        body.useGravity = true;
         body.velocity = blobRigidbody.velocity;
-        //body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        body.constraints = RigidbodyConstraints.None;
         connectedObject.gameObject.GetComponentInChildren<DragableObject>().SetState(DragState.Idle);
         connectedObject = null;
     }
