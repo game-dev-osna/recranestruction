@@ -34,8 +34,8 @@ public class BlobControl : MonoBehaviour
     void Update()
     {
         bool newGrabbing = _grabAction.ReadValue<float>() >= 0.5f;
-
-        if (newGrabbing)
+            
+        if (newGrabbing && !_grabbing)
             AttachCollidingObject();
 
         if (!newGrabbing && _grabbing)
@@ -54,6 +54,7 @@ public class BlobControl : MonoBehaviour
         var collidingObject = collidingObjects.First();
         collidingObject.SetParent(transform);
         collidingObject.GetComponent<Rigidbody>().isKinematic = true;
+        collidingObject.GetComponent<Rigidbody>().constraints= RigidbodyConstraints.FreezeAll;
         connectedObject = collidingObject;
         connectedObject.gameObject.GetComponentInChildren<DragableObject>().SetState(DragState.Grabbed);
     }
@@ -69,6 +70,7 @@ public class BlobControl : MonoBehaviour
         var body = connectedObject.GetComponent<Rigidbody>();
         body.isKinematic = false;
         body.velocity = blobRigidbody.velocity;
+        body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         connectedObject = null;
         connectedObject.gameObject.GetComponentInChildren<DragableObject>().SetState(DragState.Grabbed);
     }
