@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Level(Fire)1.unity
+    guid: 87d953df5712efd41bd82e0670d503e7
+  - enabled: 1
+    path: Assets/Scenes/WaterLevel.unity
+    guid: b2ff3ed01a096b740960c0a3efb3fda1
+  - enabled: 1
+    path: Assets/Scenes/FloatingIslandLevel.unity
+    guid: b1d0260894718e242989bee5a0cdba60
+  - enabled: 1
+    path: Assets/Scenes/StapelLevel.unity
+    guid: 823664f9fa55fbe49aa797b6a31df6bc
   m_configObjects: {}
